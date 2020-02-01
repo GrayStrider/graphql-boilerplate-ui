@@ -48,6 +48,9 @@ import Vue from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
 
 export default Vue.extend({
+  created(): void {
+    this.$vuetify.theme.dark = true
+  },
   name: 'App',
 
   components: {

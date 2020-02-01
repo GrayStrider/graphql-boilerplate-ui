@@ -2,6 +2,7 @@
 	<v-skeleton-loader
 			:loading="loading.ships"
 			type="table"
+			transition='fade-transition'
 	>
 		<v-data-table
 				:items="ships2"
