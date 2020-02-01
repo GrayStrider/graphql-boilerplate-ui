@@ -6,12 +6,12 @@ require:
   - tsconfig-paths/register
 
 generates:
-  src/graphql/generated/typings.ts:
+  graphql/generated/typings.ts:
     plugins:
       - "typescript"
       - "typescript-resolvers"
       - "typescript-document-nodes"
-  src/graphql/generated/schema.json:
+  graphql/generated/schema.json:
     plugins:
       - introspection
     config:

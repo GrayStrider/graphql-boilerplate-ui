@@ -13,6 +13,9 @@ extends:
   - 'plugin:@typescript-eslint/recommended-requiring-type-checking'
   - 'plugin:jest/all'
   - 'plugin:import/typescript'
+  - 'plugin:vue/essential'
+  - 'eslint:recommended'
+  - '@vue/typescript'
 
 rules:
   import/group-exports: warn
@@ -293,6 +296,8 @@ rules:
   space-infix-ops: 'off'
   spaced-comment: 'off'
   template-curly-spacing: 'off'
+env:
+  node: true
 
 overrides:
   - files:
@@ -304,6 +309,9 @@ overrides:
     rules:
       '@typescript-eslint/require-await': 'off'
       init-declarations: 'off'
+    env:
+      jest/globals: true
+      jest: true
 
 settings:
   import/extensions:
@@ -316,5 +324,4 @@ settings:
     typescript:
       alwaysTryTypes: true
 
-env:
-  jest/globals: true
+
