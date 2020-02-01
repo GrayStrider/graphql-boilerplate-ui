@@ -22,10 +22,8 @@
     ],
     "paths": {
       "@/*": ["src/*"],
-      "@config": ["config/export"],
-
+      "@utils": ["utils"],
       "src/*": ["src/*"],
-      "config/*": ["config/*"],
       "test/*": ["test/*"]
   },
     "lib": [

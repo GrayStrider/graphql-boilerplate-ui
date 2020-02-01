@@ -11,25 +11,27 @@
 		</v-data-table>
 	</v-skeleton-loader>
 </template>
+
 <script>
   import sleep from "./../../utils/sleep";
   import gql from "graphql-tag";
 
-  export default {
-    name: 'ShipsTable',
-
-    apollo: {
-      ships:
-        gql`{
+  const apollo = {
+    ships:
+      gql`{
 					ships {
 						id
 						name
 						successful_landings
 						}
 				}`
-    },
+  }
+  export default {
+    name: 'ShipsTable',
 
-	  async created() {
+    apollo,
+
+    async created() {
       await sleep(2000)
       let {data: {ships}} = await this.$apollo.queries.ships.refetch()
       this.loading.ships = false
