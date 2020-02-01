@@ -105,7 +105,6 @@
 
 			<v-btn
 					icon
-					@click="alert"
 			>
 				<v-icon>mdi-apps</v-icon>
 			</v-btn>
@@ -141,7 +140,7 @@
 						type="table"
 					>
 						<v-data-table
-								:items="ships2"
+								:items="ships"
 								:headers='headers'
 								:items-per-page=5
 						>
@@ -263,6 +262,7 @@
       let {data: {ships}} = await this.$apollo.queries.ships.refetch()
       this.loading.ships = false
       this.ships2 = ships
+	    return ships
     },
     apollo: {
       ships:
@@ -277,12 +277,7 @@
     props: {
       source: String,
     },
-    methods: {
-      alert() {
-        console.log('hello')
-      }
 
-    },
 	  computed: {
       mockShips: async function () {
         console.log(this.$apollo.queries)
