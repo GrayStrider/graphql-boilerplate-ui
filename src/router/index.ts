@@ -2,14 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Baseline from '../components/Baseline.vue'
+import GoogleContacts from '../components/GoogleContacts.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'Google Contacts',
+    component: GoogleContacts
   },
   {
     path: '/about',
