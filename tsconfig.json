@@ -21,10 +21,13 @@
       "./node_modules/vuetify/types"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+      "@/*": ["src/*"],
+      "@config": ["config/export"],
+
+      "src/*": ["src/*"],
+      "config/*": ["config/*"],
+      "test/*": ["test/*"]
+  },
     "lib": [
       "esnext",
       "dom",
