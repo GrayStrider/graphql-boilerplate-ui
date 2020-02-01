@@ -10,6 +10,9 @@
 				:items-per-page=5
 		>
 		</v-data-table>
+		<v-btn fab small>
+		</v-btn>
+
 	</v-skeleton-loader>
 </template>
 
