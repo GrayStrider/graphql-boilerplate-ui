@@ -23,6 +23,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@utils": ["utils"],
+      "@utils/*": ["utils/*"],
       "src/*": ["src/*"],
       "test/*": ["test/*"]
   },
@@ -33,14 +34,8 @@
       "scripthost"
     ]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "tests"
   ]
 }
