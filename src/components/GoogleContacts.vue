@@ -95,7 +95,18 @@
 					class="hidden-sm-and-down"
 			/>
 			<v-spacer/>
-			<v-btn icon>
+			<v-switch
+					hide-details
+					label='Dark Mode'
+					v-model=$vuetify.theme.dark
+			>
+
+			</v-switch>
+
+			<v-btn
+					icon
+					@click="alert"
+			>
 				<v-icon>mdi-apps</v-icon>
 			</v-btn>
 			<v-btn icon>
@@ -158,11 +169,11 @@
 		</v-content>
 		<v-btn
 				bottom
+				right
+				fixed
 				color="pink"
 				dark
 				fab
-				fixed
-				right
 				@click="dialog = !dialog"
 		>
 			<v-icon>mdi-plus</v-icon>
@@ -260,6 +271,12 @@
     props: {
       source: String,
     },
+	  methods: {
+      alert () {
+      	console.log('hello')
+      }
+
+	  },
     data: () => ({
       dialog: false,
       drawer: null,
