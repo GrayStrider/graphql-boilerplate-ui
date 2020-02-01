@@ -15,7 +15,7 @@
 
 			<v-flex mb-4>
 				<h1 class="display-2 font-weight-bold mb-3">
-					Welcome to Vuetify
+					{{msg}}
 				</h1>
 				<p class="subheading font-weight-regular">
 					For help and collaboration with other Vuetify developers,
@@ -30,7 +30,7 @@
 			>
 				<h2 class="headline font-weight-bold mb-3">What's next?</h2>
 
-				<v-layout justify-center>
+				<v-layout justify-center="true">
 					<a
 							v-for="(next, i) in whatsNext"
 							:key="i"
@@ -49,7 +49,7 @@
 			>
 				<h2 class="headline font-weight-bold mb-3">Important Links</h2>
 
-				<v-layout justify-center>
+				<v-layout justify-center='true'>
 					<a
 							v-for="(link, i) in importantLinks"
 							:key="i"
@@ -68,7 +68,7 @@
 			>
 				<h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
 
-				<v-layout justify-center>
+				<v-layout justify-center='true'>
 					<a
 							v-for="(eco, i) in ecosystem"
 							:key="i"
@@ -89,7 +89,7 @@
 
 	export default Vue.extend({
 		name: 'HelloWorld',
-
+		props: ['msg'],
 		data: () => ({
 			ecosystem: [
 				{
