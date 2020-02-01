@@ -1,5 +1,5 @@
 overwrite: true
-schema: "src/graphql/utils/codegen.schema.ts"
+schema: 'https://api.spacex.land/graphql/'
 
 require:
   - ts-node/register
