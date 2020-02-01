@@ -135,17 +135,7 @@
 						align="center"
 						justify="center"
 				>
-					<v-skeleton-loader
-						:loading="loading.ships"
-						type="table"
-					>
-						<v-data-table
-								:items="ships"
-								:headers='headers'
-								:items-per-page=5
-						>
-						</v-data-table>
-					</v-skeleton-loader>
+					<ShipsTable/>
 
 
 				</v-row>
@@ -252,56 +242,21 @@
 
 <script>
 
-  import gql from "graphql-tag";
-  import sleep from "../../utils/sleep";
+  import ShipsTable from "@/components/ShipsTable";
 
   export default {
-    async created() {
-      console.log(this.$apollo.queries)
-      await sleep(2000)
-      let {data: {ships}} = await this.$apollo.queries.ships.refetch()
-      this.loading.ships = false
-      this.ships2 = ships
-	    return ships
-    },
-    apollo: {
-      ships:
-        gql`{
-					ships {
-						id
-						name
-						successful_landings
-						}
-				}`
-    },
+    components: {ShipsTable},
+
+
     props: {
       source: String,
     },
 
-	  computed: {
-      mockShips: async function () {
-        console.log(this.$apollo.queries)
-        await sleep(2000)
-	      this.loading.ships = false
-        let res = await this.$apollo.queries.ships.refetch()
-	      console.log(res)
-        return res
 
-      }
-
-	  },
     data: () => ({
-      loading: {
-        ships: true,
-      },
-      ships2: [],
+
       dialog: false,
       drawer: null,
-      headers: [
-        {text: "Name", value: 'name'},
-        {text: 'ID', value: 'id'},
-        {text: 'Successful landings', value: 'successful_landings'}
-      ],
       items: [
         {icon: 'mdi-contacts', text: 'Contacts'},
         {icon: 'mdi-history', text: 'Frequently contacted'},
