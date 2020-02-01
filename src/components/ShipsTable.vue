@@ -14,8 +14,8 @@
 </template>
 
 <script>
-  import sleep from "./../../utils/sleep";
   import gql from "graphql-tag";
+  import {sleep} from "@utils";
 
   const apollo = {
     ships:

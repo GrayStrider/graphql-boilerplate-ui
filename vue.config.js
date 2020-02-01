@@ -1,6 +1,14 @@
 const path = require('path')
-const tsconfig = require('./tsconfig.json')
-console.log(tsconfig.compilerOptions.paths)
+const {paths} = require('./tsconfig.json').compilerOptions
+const {forEachObjIndexed} = require('ramda')
+const aliasPaths = (config) => {
+  const getStr = (str) => str.replace(/\/.+/, '')
+  forEachObjIndexed(([value], key) => {
+    config.resolve.alias
+      .set(getStr(key), path.resolve(__dirname, getStr(value)))
+  }, paths)
+
+}
 
 module.exports = {
   "lintOnSave": false,
@@ -11,7 +19,6 @@ module.exports = {
     host: '127.0.0.1'
   },
   chainWebpack: config => {
-    config.resolve.alias
-      .set('@', path.resolve(__dirname, 'src'))
+    aliasPaths(config)
   }
 }
