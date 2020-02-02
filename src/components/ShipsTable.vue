@@ -1,24 +1,31 @@
 <template>
-	<v-skeleton-loader
-			:loading="loading.ships"
-			type="table"
-			transition='fade-transition'
+
+	<v-container
+			style='position: relative'
 	>
 		<v-data-table
-				:items="ships2"
+				:items="ships"
 				:headers='headers'
 				:items-per-page=5
+				style='position: relative; top: 0; right: 0;'
 		>
 		</v-data-table>
-		<v-btn fab small>
+		<v-btn fab small :color=color.btn
+		       class='ma-5'
+		       style='bottom: 0; left:0; position: absolute'
+		       :loading=query.loading
+		       @click=refetch
+		>
+			<v-icon>mdi-reload</v-icon>
 		</v-btn>
 
-	</v-skeleton-loader>
+	</v-container>
+
 </template>
 
 <script>
   import gql from "graphql-tag";
-  import {sleep} from "@utils";
+  import {defer} from "lodash";
 
   const apollo = {
     ships:
@@ -32,28 +39,20 @@
   }
   export default {
     name: 'ShipsTable',
-
     apollo,
-
-    async created() {
-      await sleep(2000)
-      let {data: {ships}} = await this.$apollo.queries.ships.refetch()
-      this.loading.ships = false
-      this.ships2 = ships
-    },
-
     computed: {
-      mockShips: async function () {
-        await sleep(2000)
-        this.loading.ships = false
-        let res = await this.$apollo.queries.ships.refetch()
-        console.log(res)
-        return res
-
+      query () {return this.$apollo.queries.ships},
+    },
+    methods: {
+      async refetch() {
+        console.log('called')
+        await this.query.refetch()
       }
-
     },
     data: () => ({
+	    color: {
+	      btn: 'blue darken-2'
+	    },
       loading: {
         ships: true,
       },
