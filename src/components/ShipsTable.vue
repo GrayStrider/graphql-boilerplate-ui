@@ -10,14 +10,21 @@
 				style='position: relative; top: 0; right: 0;'
 		>
 		</v-data-table>
-		<v-btn fab small :color=color.btn
-		       class='ma-5'
-		       style='bottom: 0; left:0; position: absolute'
-		       :loading=query.loading
-		       @click=refetch
-		>
-			<v-icon>mdi-reload</v-icon>
-		</v-btn>
+		<v-fade-transition mode='in-out'>
+			<v-btn
+					v-bind:key=btn.state
+					small
+					class='ma-5'
+					style='bottom: 0; left:0; position: absolute'
+					:ripple=false
+					:color=btn.color
+					:loading=query.loading
+					@click="refetch"
+			>
+				<v-icon>{{btn.icon}}</v-icon>
+			</v-btn>
+
+		</v-fade-transition>
 
 	</v-container>
 
@@ -46,31 +53,46 @@
       },
     },
 
+    created() {
+      this.resetButton = debounce(() => {
+        this.btn.color = 'blue darken-2'
+        this.btn.icon = 'mdi-reload'
+        this.btn.state = 'reset'
+      }, 2000)
+    },
+
+
     methods: {
       async refetch() {
+        this.resetButton.cancel()
+        this.btn.color = 'blue darken-2'
+        this.btn.icon = null
         const {data, errors} = await this.query.refetch()
         if (data) {
-          this.color.btn = 'green'
+          this.btn.color = 'green'
+          this.btn.icon = 'mdi-check'
+          this.btn.state = 'done'
 
         } else if (errors) {
-          this.color.btn = 'red'
+          this.btn.color = 'red'
+          this.btn.icon = 'mdi-alert-circle-outline'
+          this.btn.state = 'error'
 
         }
       }
     },
-	  watch: {
-      'color.btn': function (newColor) {
+    watch: {
+      'btn.color': function (newColor) {
         if (newColor !== 'blue darken-2') {
-	        debounce(() => {
-            this.color.btn = 'blue darken-2'
-	        }, 2000)()
-				}
+          this.resetButton()
+        }
       }
-
-	  },
+    },
     data: () => ({
-      color: {
-        btn: 'blue darken-2'
+      btn: {
+        color: 'blue darken-2',
+        icon: 'mdi-reload',
+	      state: 'normal'
       },
       loading: {
         ships: true,
