@@ -25,7 +25,7 @@
 
 <script>
   import gql from "graphql-tag";
-  import {defer} from "lodash";
+  import {debounce} from "lodash";
 
   const apollo = {
     ships:
@@ -41,18 +41,37 @@
     name: 'ShipsTable',
     apollo,
     computed: {
-      query () {return this.$apollo.queries.ships},
+      query() {
+        return this.$apollo.queries.ships
+      },
     },
+
     methods: {
       async refetch() {
-        console.log('called')
-        await this.query.refetch()
+        const {data, errors} = await this.query.refetch()
+        if (data) {
+          this.color.btn = 'green'
+
+        } else if (errors) {
+          this.color.btn = 'red'
+
+        }
       }
     },
+	  watch: {
+      'color.btn': function (newColor) {
+        if (newColor !== 'blue darken-2') {
+	        debounce(() => {
+            this.color.btn = 'blue darken-2'
+	        }, 2000)()
+				}
+      }
+
+	  },
     data: () => ({
-	    color: {
-	      btn: 'blue darken-2'
-	    },
+      color: {
+        btn: 'blue darken-2'
+      },
       loading: {
         ships: true,
       },
