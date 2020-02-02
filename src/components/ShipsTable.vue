@@ -7,6 +7,8 @@
 				:items="ships"
 				:headers='headers'
 				:items-per-page=5
+				:loading=query.loading
+				loading-text="Fetching data..."
 				style='position: relative; top: 0; right: 0;'
 		>
 		</v-data-table>
