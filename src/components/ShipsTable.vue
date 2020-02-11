@@ -1,8 +1,20 @@
 <template lang=pug>
 	v-container(style={position: 'relative'})
-		v-data-table(:items='ships' :headers='headers' :items-per-page='5' :loading='query.loading' loading-text='Fetching data...' style='position: relative; top: 0; right: 0;')
+		v-data-table(
+			:items='ships'
+			:headers='headers'
+			:items-per-page=7
+			loading-text='Fetching data...'
+			style={position: 'relative', top: 0, right: 0})
 		v-fade-transition(mode='in-out')
-			v-btn.ma-5(v-bind:key='btn.state' small='' style='bottom: 0; left:0; position: absolute' :ripple='false' :color='btn.color' :loading='query.loading' @click='refetch')
+			v-btn.ma-5(
+				@click='refetch'
+				v-bind:key='btn.state'
+				:loading='query.loading'
+				:color='btn.color'
+				:ripple='false'
+				style={bottom: 0, left: 0, position: 'absolute'}
+				small)
 				v-icon {{btn.icon}}
 </template>
 
