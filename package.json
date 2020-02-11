@@ -10,6 +10,7 @@
     "codegen": "graphql-codegen"
   },
   "dependencies": {
+    "@mdi/js": "^4.9.95",
     "apollo-boost": "^0.4.7",
     "axios": "^0.19.1",
     "bluebird": "^3.7.2",
