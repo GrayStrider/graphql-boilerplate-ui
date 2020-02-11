@@ -1,7 +1,6 @@
-<template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vuetify App"/>
-  </div>
+<template lang=pug>
+  .home
+    HelloWorld(msg='Welcome to Your Vuetify App')
 </template>
 
 <script>

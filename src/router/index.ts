@@ -13,6 +13,11 @@ const routes = [
     component: GoogleContacts
   },
   {
+    path: '/home',
+    name: 'Home',
+    component: Home
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
