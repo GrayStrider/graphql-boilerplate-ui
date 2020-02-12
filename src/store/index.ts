@@ -3,13 +3,19 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+export interface RootState {
+	drawerOpen: boolean
+}
+
+export default new Vuex.Store<RootState>({
+	state: {
+		drawerOpen: false,
+	},
+	mutations: {
+		toggleDrawer(s, val) {
+			s.drawerOpen = val
+		},
+	},
+	actions: {},
+	modules: {},
 })
