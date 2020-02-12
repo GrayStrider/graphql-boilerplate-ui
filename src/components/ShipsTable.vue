@@ -1,11 +1,13 @@
 <template lang=pug>
 	v-container(style={position: 'relative'})
+
 		v-data-table(
 			:items='ships'
 			:headers='headers'
 			:items-per-page=7
 			loading-text='Fetching data...'
 			style={position: 'relative', top: 0, right: 0})
+
 		v-fade-transition(mode='in-out')
 			v-btn.ma-5(
 				@click='refetch'
@@ -15,7 +17,9 @@
 				:ripple='false'
 				style={bottom: 0, left: 0, position: 'absolute'}
 				small)
+
 				v-icon {{btn.icon}}
+
 </template>
 
 <script>
