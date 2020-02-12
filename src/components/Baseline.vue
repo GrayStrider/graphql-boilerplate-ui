@@ -35,18 +35,17 @@
 </template>
 
 <script lang=ts>
-  import {Vue, Component, Prop} from 'vue-property-decorator'
-  import AppDrawer from '@/components/AppDrawer.vue'
-  import {mapMutations} from 'vuex'
+	import {Vue, Component, Prop} from 'vue-property-decorator'
+	import AppDrawer from '@/components/AppDrawer.vue'
+	import {mapMutations} from 'vuex'
 
-  @Component({
-	  components: {AppDrawer},
-	  methods: {toggleDrawer(e) {this.$store.commit('toggleDrawer', e)}}
-  })
-  export default class Baseline extends Vue {
-
-    created() {
-      this.$vuetify.theme.dark = true
-    }
-  }
+	@Component({
+		components: {AppDrawer},
+		methods: {...mapMutations(['toggleDrawer'])}
+	})
+	export default class Baseline extends Vue {
+		created() {
+			this.$vuetify.theme.dark = true
+		}
+	}
 </script>
