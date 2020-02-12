@@ -8,6 +8,8 @@ export interface RootState {
 }
 
 export default new Vuex.Store<RootState>({
+	strict: !!process.env.developement,
+	
 	state: {
 		drawerOpen: false,
 	},
